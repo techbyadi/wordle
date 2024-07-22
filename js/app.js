@@ -68,14 +68,9 @@ function placeWord(selectedLetter){
     console.log(generatedWord);      
 }
 
-function reset (){
-  render();
-}
-
 
 /*----------- Event Listeners ----------*/
 
 keyboardElements.forEach((keyboardElement)=> {
   keyboardElement.addEventListener('click', handleKeyboardClick);
 })
-resetEl.addEventListener('click', reset);
