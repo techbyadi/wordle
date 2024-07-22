@@ -32,8 +32,9 @@ body{
   align-items: center;
 }
 
-h1 {
+h1,h2 {
   margin-bottom: 0px;
+  text-align: center;
 }
 
 button {
@@ -48,7 +49,22 @@ button {
   background-color: #77ACA2;
 }
 
+.keyboard-container {
+  width: 600px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.row{
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
 .keyboard {
-  width: 25px;
+  width: 50px;
   background-color: chocolate;
+  font-size: 17px;
+  cursor: pointer;
+  color: azure;
 }

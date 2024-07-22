@@ -30,12 +30,12 @@ function handleKeyboardClick(event){
   placeWord(selectedLetter);
   displayWord(selectedLetter);
   if(!words[3]==''){
-    compareWord();
+    compareWords();
     init();
   }
 }
 
-function compareWord(){
+function compareWords(){
   if(generatedWord === todaysWord){
     console.log('Woahhhhh!!');
   }
@@ -45,10 +45,13 @@ function compareWord(){
 function displayWord(selectedLetter) {
   if(index<20){
   rowElements[index].textContent = selectedLetter;
+  rowElements[index].classList.add('animate__animated','animate__fadeIn')
+  if(todaysWord[index]===selectedLetter){
+    rowElements[index].style.backgroundColor = 'green'
+  }
   console.log(index);
   index++;
   }
-  //console.log(`${element.textContent} is the element`);
 }
 
 function placeWord(selectedLetter){
