@@ -1162,6 +1162,7 @@ function checkWord(word) {
 /*---------------- Constants ---------------*/
 
 let words;
+let validLetters = "QWERTYUIOPASDFGHJKLZXCVBNM";
 
 /*--------- Variables (state) ----------*/
 
@@ -1172,7 +1173,6 @@ let result = false;
 let rowIndex = 0;
 
 /*------- Cached Element References ------*/
-
 
 const rowElements = document.querySelectorAll(".row.elements");
 const allElements = document.querySelectorAll(".sqr");
@@ -1187,58 +1187,69 @@ init();
 function init() {
   words = ["", "", "", "", ""];
   generatedWord = "";
-  console.log(todaysWord.toUpperCase());
+  console.log(`Today's word is: ${todaysWord.toUpperCase()}`);
 }
 
 function handleKeyboardClick(event) {
-  let selectedLetter = event.target.id;
-  placeWord(selectedLetter);
-  displayWord(selectedLetter);
+  displayWord(event.target.id);
+  renderResult();
+}
+
+function renderResult() {
   if (!words[4] == "") {
     compareWords();
+    init();
+  }
+  if(rowIndex===6){
     init();
   }
 }
 
 function compareWords() {
-    for (let letter = 0; letter < todaysWord.length; letter++) {
-      if (generatedWord[letter] === todaysWord[letter]) {
-        rowElements[rowIndex].children[letter].style.backgroundColor = "green";
-      } else if (todaysWord.includes(generatedWord[letter])) {
-        rowElements[rowIndex].children[letter].style.backgroundColor = "yellow";
-      } else {
-        rowElements[rowIndex].children[letter].style.backgroundColor = "gray";
-      }
+  for (let letter = 0; letter < todaysWord.length; letter++) {
+    if (generatedWord[letter] === todaysWord[letter]) {
+      rowElements[rowIndex].children[letter].style.backgroundColor = "green";
+    } else if (todaysWord.includes(generatedWord[letter])) {
+      rowElements[rowIndex].children[letter].style.backgroundColor = "yellow";
+    } else {
+      rowElements[rowIndex].children[letter].style.backgroundColor = "gray";
     }
-    rowIndex++;
+  }
+  rowIndex++;
 }
 
 function displayWord(selectedLetter) {
-  if (index < 30) {
-    allElements[index].textContent = selectedLetter;
-    allElements[index].classList.add("animate__animated", "animate__fadeIn");
-    index++;
-  }
-}
+  if (validLetters.includes(selectedLetter)) {
+    if (words[0] === "") {
+      words[0] = selectedLetter;
+    } else if (words[1] === "") {
+      words[1] = selectedLetter;
+    } else if (words[2] === "") {
+      words[2] = selectedLetter;
+    } else if (words[3] === "") {
+      words[3] = selectedLetter;
+    } else if (words[4] === "") {
+      words[4] = selectedLetter;
+    } 
 
-function placeWord(selectedLetter) {
-  if (words[0] === "") {
-    words[0] = selectedLetter;
-  } else if (words[1] === "") {
-    words[1] = selectedLetter;
-  } else if (words[2] === "") {
-    words[2] = selectedLetter;
-  } else if (words[3] === "") {
-    words[3] = selectedLetter;
-  } else if (words[4] === "") {
-    words[4] = selectedLetter;
+    if (index < 30) {
+      allElements[index].textContent = selectedLetter;
+      allElements[index].classList.add("animate__animated", "animate__fadeIn");
+      index++;
+    }
+
+    generatedWord = `${generatedWord}${selectedLetter}`;
+    //console.log(generatedWord);
   }
-  generatedWord = `${generatedWord}${selectedLetter}`;
-  console.log(generatedWord);
 }
 
 /*----------- Event Listeners ----------*/
 
 keyboardElements.forEach((keyboardElement) => {
   keyboardElement.addEventListener("click", handleKeyboardClick);
+});
+
+document.addEventListener("keydown", (evt) => {
+  displayWord(evt.key.toUpperCase());
+  renderResult();
 });
