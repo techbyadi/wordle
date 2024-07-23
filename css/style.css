@@ -18,7 +18,7 @@ body{
   flex-wrap: wrap;
 }
 
-.sqr1, .sqr2, .sqr3, .sqr4, .sqr5, .sqr6 {
+.sqr {
   width: 17%;
   aspect-ratio: 1/1;
   border: 3px solid white;
@@ -63,9 +63,10 @@ button {
 
 .keyboard {
   width: 50px;
-  height: 45px;
+  height: 50px;
   background-color: chocolate;
-  font-size: 17px;
+  font-size: 15px;
   cursor: pointer;
   color: azure;
 }
+
