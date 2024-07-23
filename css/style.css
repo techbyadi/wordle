@@ -1,7 +1,7 @@
 body{
   background-color: #031926;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  margin: 0;
+  margin: 30px;
   color: azure;
   height: 100vh;
   display: flex;
@@ -12,14 +12,14 @@ body{
 
 .board {
   gap: 4px;
-  width: 325px;
+  width: 370px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
 }
 
-.sqr {
-  width: 20%;
+.sqr1, .sqr2, .sqr3, .sqr4, .sqr5, .sqr6 {
+  width: 17%;
   aspect-ratio: 1/1;
   border: 3px solid white;
   background-color: #77ACA2;
@@ -63,6 +63,7 @@ button {
 
 .keyboard {
   width: 50px;
+  height: 45px;
   background-color: chocolate;
   font-size: 17px;
   cursor: pointer;
