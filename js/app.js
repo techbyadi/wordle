@@ -1298,6 +1298,10 @@ function deleteLetter(){
   }
 }
 
+
+function reset(){
+  window.location.reload();
+}
 /*----------- Event Listeners ----------*/
 
 keyboardElements.forEach((keyboardElement) => {
@@ -1318,3 +1322,5 @@ document.addEventListener("keydown", (evt) => {
     deleteLetter();
   }
 });
+
+resetEl.addEventListener('click', reset);
