@@ -1250,7 +1250,10 @@ function compareWords() {
   }
   if (checkWord(generatedWord.toLowerCase())) {
     rowIndex++;
-    if(!result && rowIndex ===6){messageEl.textContent = `The correct was: ${todaysWord}`;}
+    if(!result && rowIndex ===6){
+      messageEl.classList.add("animate__animated","animate__zoomInDown");
+      messageEl.textContent = `I got you! The WORDLE was: ${todaysWord}`;
+    }
     console.log(`Row index is: ${rowIndex}`);
   }
 }
