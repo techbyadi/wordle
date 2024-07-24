@@ -1176,6 +1176,7 @@ let rowIndex = 0;
 
 const rowElements = document.querySelectorAll(".row.elements");
 const allElements = document.querySelectorAll(".sqr");
+const keyboardEls = document.querySelectorAll(".rowKeys")
 const keyboardElements = document.querySelectorAll(".keyboard");
 const messageEl = document.getElementById("message");
 const resetEl = document.getElementById("reset");
@@ -1191,8 +1192,9 @@ function init() {
 }
 
 function handleKeyboardClick(event) {
-  displayWord(event.target.id);
-  renderResult();
+  let enteredLetter = event.target.id;
+  displayWord(enteredLetter);
+  renderResult(enteredLetter);
 }
 
 function renderResult() {
@@ -1208,13 +1210,17 @@ function renderResult() {
 function compareWords() {
   for (let letter = 0; letter < todaysWord.length; letter++) {
     if (generatedWord[letter] === todaysWord[letter]) {
-      rowElements[rowIndex].children[letter].style.backgroundColor = "green";
+      rowElements[rowIndex].children[letter].style.backgroundColor = "rgb(106, 170, 100)";
+      document.getElementById(generatedWord[letter]).style.backgroundColor = "rgb(106, 170, 100)";
     } else if (todaysWord.includes(generatedWord[letter])) {
-      rowElements[rowIndex].children[letter].style.backgroundColor = "yellow";
+      rowElements[rowIndex].children[letter].style.backgroundColor = "rgb(201, 180, 88)";
+      document.getElementById(generatedWord[letter]).style.backgroundColor = "rgb(201, 180, 88)";
     } else {
       rowElements[rowIndex].children[letter].style.backgroundColor = "gray";
+      document.getElementById(generatedWord[letter]).style.backgroundColor = "gray";
     }
   }
+
   rowIndex++;
 }
 
