@@ -1268,17 +1268,12 @@ function displayWord(selectedLetter) {
       rowElements[rowIndex].children[cursor].textContent = selectedLetter;
       rowElements[rowIndex].children[cursor].classList.add("animate__animated", "animate__fadeIn");
     } 
-  
-    cursor++;
-
-    generatedWord = `${generatedWord}${selectedLetter}`;
-    console.log(generatedWord);
-    console.log(cursor);
+    
+    if (generatedWord.length >= 0 && generatedWord.length < words.length) {
+      generatedWord = `${generatedWord}${selectedLetter}`;
+      cursor++;
+    }
   }
-
-    //rowElements[rowIndex].children[letter].textContent = selectedLetter;
-    //document.getElementById(generatedWord[letter]).style.backgroundColor = "rgb(106, 170, 100)";
-
   }
 }
 
