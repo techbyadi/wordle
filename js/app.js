@@ -1194,18 +1194,10 @@ function init() {
 
 function handleKeyboardClick(event) {
   let enteredLetter = event.target.id;
-  if (enteredLetter === "del") {
-    deleteLetter();
-  }
+  if (enteredLetter === "del") {deleteLetter();}
   displayWord(enteredLetter);
-  renderResult();
 }
 
-function renderResult() {
-  if (rowIndex === 6) {
-    init();
-  }
-}
 
 function compareWords() {
   for (let letter = 0; letter < todaysWord.length; letter++) {
@@ -1254,9 +1246,12 @@ function compareWords() {
   }
   if (generatedWord === todaysWord) {
     result = true;
+    confetti.start(1500);
   }
   if (checkWord(generatedWord.toLowerCase())) {
     rowIndex++;
+    if(!result && rowIndex ===6){messageEl.textContent = `The correct was: ${todaysWord}`;}
+    console.log(`Row index is: ${rowIndex}`);
   }
 }
 
@@ -1324,13 +1319,15 @@ function reset() {
 /*----------- Event Listeners ----------*/
 
 keyboardElements.forEach((keyboardElement) => {
-  keyboardElement.addEventListener("click", handleKeyboardClick);
+  if(rowIndex<6){
+  keyboardElement.addEventListener("click", handleKeyboardClick);}
 });
 
 document.addEventListener("keydown", (evt) => {
-  displayWord(evt.key.toUpperCase());
+  if(rowIndex<6){
+  displayWord(evt.key.toUpperCase());}
 
-  if (evt.key === "Enter" && !result && cursor === 5) {
+  if (evt.key === "Enter" && !result && cursor === 5 && rowIndex<6) {
     compareWords();
     if (checkWord(generatedWord.toLowerCase())) {
       init();
