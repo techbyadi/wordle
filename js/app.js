@@ -1167,7 +1167,7 @@ let validLetters = "QWERTYUIOPASDFGHJKLZXCVBNM";
 /*--------- Variables (state) ----------*/
 
 let todaysWord = `${getWord(1).toUpperCase()}`;
-let cursur = 0;
+let cursor = 0;
 let generatedWord;
 let result = false;
 let rowIndex = 0;
@@ -1188,7 +1188,7 @@ init();
 function init() {
   words = ["", "", "", "", ""];
   generatedWord = "";
-  cursur=0;
+  cursor=0;
   console.log(`Today's word is: ${todaysWord.toUpperCase()}`);
 }
 
@@ -1249,38 +1249,31 @@ function displayWord(selectedLetter) {
   if (validLetters.includes(selectedLetter)) {
     if (words[0] === "") {
       words[0] = selectedLetter;
-      rowElements[rowIndex].children[cursur].textContent = selectedLetter;
-      rowElements[rowIndex].children[cursur].classList.add("animate__animated", "animate__fadeIn");
+      rowElements[rowIndex].children[cursor].textContent = selectedLetter;
+      rowElements[rowIndex].children[cursor].classList.add("animate__animated", "animate__fadeIn");
     } else if (words[1] === "") {
       words[1] = selectedLetter;
-      rowElements[rowIndex].children[cursur].textContent = selectedLetter;
-      rowElements[rowIndex].children[cursur].classList.add("animate__animated", "animate__fadeIn");
+      rowElements[rowIndex].children[cursor].textContent = selectedLetter;
+      rowElements[rowIndex].children[cursor].classList.add("animate__animated", "animate__fadeIn");
     } else if (words[2] === "") {
       words[2] = selectedLetter;
-      rowElements[rowIndex].children[cursur].textContent = selectedLetter;
-      rowElements[rowIndex].children[cursur].classList.add("animate__animated", "animate__fadeIn");
+      rowElements[rowIndex].children[cursor].textContent = selectedLetter;
+      rowElements[rowIndex].children[cursor].classList.add("animate__animated", "animate__fadeIn");
     } else if (words[3] === "") {
       words[3] = selectedLetter;
-      rowElements[rowIndex].children[cursur].textContent = selectedLetter;
-      rowElements[rowIndex].children[cursur].classList.add("animate__animated", "animate__fadeIn");
+      rowElements[rowIndex].children[cursor].textContent = selectedLetter;
+      rowElements[rowIndex].children[cursor].classList.add("animate__animated", "animate__fadeIn");
     } else if (words[4] === "") {
       words[4] = selectedLetter;
-      rowElements[rowIndex].children[cursur].textContent = selectedLetter;
-      rowElements[rowIndex].children[cursur].classList.add("animate__animated", "animate__fadeIn");
+      rowElements[rowIndex].children[cursor].textContent = selectedLetter;
+      rowElements[rowIndex].children[cursor].classList.add("animate__animated", "animate__fadeIn");
     } 
+  
+    cursor++;
 
-    cursur++;
-
-    // if (index < 30) {
-    //   allElements[index].textContent = selectedLetter;
-    //   allElements[index].classList.add("animate__animated", "animate__fadeIn");
-    //   index++;
-    // }
-
-    //let letterFromWords= words[cursur]
     generatedWord = `${generatedWord}${selectedLetter}`;
     console.log(generatedWord);
-    console.log(cursur);
+    console.log(cursor);
   }
 
     //rowElements[rowIndex].children[letter].textContent = selectedLetter;
@@ -1290,11 +1283,11 @@ function displayWord(selectedLetter) {
 }
 
 function deleteLetter(){
-  if(cursur>=1){
-  rowElements[rowIndex].children[cursur-1].textContent = "";
-  words[cursur-1]='';
+  if(cursor>=1){
+  rowElements[rowIndex].children[cursor-1].textContent = "";
+  words[cursor-1]='';
   generatedWord = generatedWord.slice(0, generatedWord.length - 1);
-  cursur--;
+  cursor--;
   }
 }
 
@@ -1313,12 +1306,12 @@ document.addEventListener("keydown", (evt) => {
   displayWord(evt.key.toUpperCase());
   //renderResult();
 
-  if(evt.key==="Enter" && !result && cursur===5){
+  if(evt.key==="Enter" && !result && cursor===5){
     compareWords();
     init();
   }
   
-  if(evt.key === "Backspace" && cursur >= 0){
+  if(evt.key === "Backspace" && cursor >= 0){
     deleteLetter();
   }
 });
