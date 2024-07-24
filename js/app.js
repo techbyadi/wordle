@@ -1221,10 +1221,15 @@ function compareWords() {
     }
   }
 
+  if(generatedWord === todaysWord){
+    result=true;
+  }
+
   rowIndex++;
 }
 
 function displayWord(selectedLetter) {
+  if(!result){
   if (validLetters.includes(selectedLetter)) {
     if (words[0] === "") {
       words[0] = selectedLetter;
@@ -1245,9 +1250,16 @@ function displayWord(selectedLetter) {
     }
 
     generatedWord = `${generatedWord}${selectedLetter}`;
-    //console.log(generatedWord);
+  }
+  
   }
 }
+
+// function deleteLetter(){
+//   allElements[index-1].textContent = '';
+//   words.pop();
+//   index--;
+// }
 
 /*----------- Event Listeners ----------*/
 
@@ -1258,4 +1270,8 @@ keyboardElements.forEach((keyboardElement) => {
 document.addEventListener("keydown", (evt) => {
   displayWord(evt.key.toUpperCase());
   renderResult();
+
+  // if(evt.key === "Backspace" && index > 0 ){
+  //   deleteLetter();
+  // }
 });
