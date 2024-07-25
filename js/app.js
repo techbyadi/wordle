@@ -104,7 +104,6 @@ function displayLetter(selectedLetter) {
    }
   if (selectedLetter === "ENT" && !result && cursor === 5 && rowIndex < 6) {
     compareLetters();
-      console.log(`${checkWord(generatedWord.toLowerCase())}`);
       if (checkWord(generatedWord.toLowerCase())) {
         setInitialValues();
       }
