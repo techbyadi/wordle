@@ -26,6 +26,8 @@ const resetEl = document.getElementById("reset");
 init();
 
 function init() {
+  console.log(`%cPsst... trying to cheat?`, `color: red; font-size: 25px; font-weight: bold;`);
+  console.log(`%cThat's okay, we won't tell anyone. Here's the answer: ${todaysWord.toUpperCase()}`, `color: green; font-size: 16px; font-weight: bold;`);
   setInitialValues();
 }
 
@@ -33,7 +35,6 @@ function setInitialValues(){
   words = ["", "", "", "", ""];
   generatedWord = "";
   cursor = 0;
-  console.log(`Today's word is: ${todaysWord.toUpperCase()}`);
 }
 
 function compareLetters() {
@@ -155,7 +156,6 @@ function displayLetter(selectedLetter) {
   
     
     }
-    console.log(`Generated word is: ${generatedWord}`);
   }
 }
 
@@ -179,7 +179,6 @@ function handleKeys(evt){
 
   if (evt.key === "Enter" && !result && cursor === 5 && rowIndex < 6) {
     compareLetters();
-    console.log(`${checkWord(generatedWord.toLowerCase())}`);
     if (checkWord(generatedWord.toLowerCase())) {
       setInitialValues();
     }
