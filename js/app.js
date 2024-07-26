@@ -1,16 +1,18 @@
 import { checkWord, getWord, } from "./data.js";
 /*---------------- Constants ---------------*/
+const gameTitle = "Wordle Adi-Venture";
 
-let letters;
-let validLetters = "QWERTYUIOPASDFGHJKLZXCVBNM";
+
+const validLetters = "QWERTYUIOPASDFGHJKLZXCVBNM";
 
 /*--------- Variables (state) ----------*/
 
-let todaysWord = `${getWord().toUpperCase()}`;
+let todaysWord = "";
 let cursor = 0;
 let generatedWord;
 let result = false;
 let rowIndex = 0;
+let letters;
 
 /*------- Cached Element References ------*/
 
@@ -24,9 +26,15 @@ const resetEl = document.getElementById("reset");
 init();
 
 function init() {
+  todaysWord = `${getWord().toUpperCase()}`;
+  console.clear();
   console.log(`%cPsst... trying to cheat?`, `color: red; font-size: 25px; font-weight: bold;`);
   console.log(`%cThat's okay, we won't tell anyone. Here's the answer: ${todaysWord.toUpperCase()}`, `color: green; font-size: 16px; font-weight: bold;`);
+  messageEl.textContent = gameTitle;
+  resetBoard();
   render();
+  result = false;
+  rowIndex =0;
 }
 
 function render(){
@@ -34,6 +42,21 @@ function render(){
   generatedWord = "";
   cursor = 0;
 }
+
+function resetBoard() {
+  rowElements.forEach((rowElements) => {
+    for (let i = 0; i < 5; i ++) {
+      rowElements.children[i].style.backgroundColor = "#ECEBF3";
+      rowElements.children[i].textContent = "";
+      rowElements.children[i].className = "";
+      rowElements.children[i].classList.add('sqr');
+    }
+  })
+  keyboardElements.forEach(keyboardElement => {
+    keyboardElement.style.backgroundColor = "#031621";
+  })
+}
+
 
 function compareLetters() {
   for (let letter = 0; letter < todaysWord.length; letter++) {
@@ -164,7 +187,8 @@ function deleteLetter() {
 }
 
 function reset() {
-  window.location.reload();
+  init();
+  this.blur();
 }
 
 function handleKeys(evt){
