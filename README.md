@@ -41,7 +41,7 @@ I’m a big fan of quizzes and puzzles and have a passion for neuroscience. I li
 # Attributions
 
 * [Wordle](https://www.nytimes.com/games/wordle/index.html) for the creative inspiration that helped spark the development of this project!
-* [Ben Manley](https://github.com/ManliestBen) invaluable inspiration and for sharing the comprehensive data file with various difficulty levels!
+* [Ben Manley](https://github.com/ManliestBen) for invaluable inspiration and for sharing the comprehensive data file with various difficulty levels!
 * [Coolors](https://coolors.co/) for offering an excellent tool to generate vibrant color palettes!
 * [Confetti](https://github.com/SEI-Remote/confetti) for providing easy-to-use confetti!
 * [Icons8](https://icons8.com/icons) for providing high quality HTML, CSS, and JavaScript logos!
