@@ -1,8 +1,7 @@
-import { checkWord, getWord, } from "./data.js";
+import { checkWord, getWord } from "./data.js";
 /*---------------- Constants ---------------*/
+
 const gameTitle = "Wordle Adi-Venture";
-
-
 const validLetters = "QWERTYUIOPASDFGHJKLZXCVBNM";
 
 /*--------- Variables (state) ----------*/
@@ -28,16 +27,22 @@ init();
 function init() {
   todaysWord = `${getWord().toUpperCase()}`;
   console.clear();
-  console.log(`%cPsst... trying to cheat?`, `color: red; font-size: 25px; font-weight: bold;`);
-  console.log(`%cThat's okay, we won't tell anyone. Here's the answer: ${todaysWord.toUpperCase()}`, `color: green; font-size: 16px; font-weight: bold;`);
+  console.log(
+    `%cPsst... trying to cheat?`,
+    `color: red; font-size: 25px; font-weight: bold;`
+  );
+  console.log(
+    `%cThat's okay, we won't tell anyone. Here's the answer: ${todaysWord.toUpperCase()}`,
+    `color: green; font-size: 16px; font-weight: bold;`
+  );
   messageEl.textContent = gameTitle;
   resetBoard();
   render();
   result = false;
-  rowIndex =0;
+  rowIndex = 0;
 }
 
-function render(){
+function render() {
   letters = ["", "", "", "", ""];
   generatedWord = "";
   cursor = 0;
@@ -45,18 +50,17 @@ function render(){
 
 function resetBoard() {
   rowElements.forEach((rowElements) => {
-    for (let i = 0; i < 5; i ++) {
+    for (let i = 0; i < 5; i++) {
       rowElements.children[i].style.backgroundColor = "#ECEBF3";
       rowElements.children[i].textContent = "";
       rowElements.children[i].className = "";
-      rowElements.children[i].classList.add('sqr');
+      rowElements.children[i].classList.add("sqr");
     }
-  })
-  keyboardElements.forEach(keyboardElement => {
+  });
+  keyboardElements.forEach((keyboardElement) => {
     keyboardElement.style.backgroundColor = "#031621";
-  })
+  });
 }
-
 
 function compareLetters() {
   for (let letter = 0; letter < todaysWord.length; letter++) {
@@ -64,8 +68,9 @@ function compareLetters() {
       if (generatedWord[letter] === todaysWord[letter]) {
         rowElements[rowIndex].children[letter].style.backgroundColor =
           "rgb(106, 170, 100)";
-        document.getElementById(generatedWord[letter].toLowerCase()).style.backgroundColor =
-          "rgb(106, 170, 100)";
+        document.getElementById(
+          generatedWord[letter].toLowerCase()
+        ).style.backgroundColor = "rgb(106, 170, 100)";
         rowElements[rowIndex].children[letter].classList.add(
           "animate__animated",
           "animate__fadeInLeft"
@@ -73,16 +78,18 @@ function compareLetters() {
       } else if (todaysWord.includes(generatedWord[letter])) {
         rowElements[rowIndex].children[letter].style.backgroundColor =
           "rgb(201, 180, 88)";
-        document.getElementById(generatedWord[letter].toLowerCase()).style.backgroundColor =
-          "rgb(201, 180, 88)";
+        document.getElementById(
+          generatedWord[letter].toLowerCase()
+        ).style.backgroundColor = "rgb(201, 180, 88)";
         rowElements[rowIndex].children[letter].classList.add(
           "animate__animated",
           "animate__fadeInLeft"
         );
       } else {
         rowElements[rowIndex].children[letter].style.backgroundColor = "gray";
-        document.getElementById(generatedWord[letter].toLowerCase()).style.backgroundColor =
-          "gray";
+        document.getElementById(
+          generatedWord[letter].toLowerCase()
+        ).style.backgroundColor = "gray";
         rowElements[rowIndex].children[letter].classList.add(
           "animate__animated",
           "animate__fadeInLeft"
@@ -105,27 +112,24 @@ function compareLetters() {
     confetti.start(1500);
   }
   if (checkWord(generatedWord.toLowerCase())) {
-
     rowIndex++;
 
-    if(!result && rowIndex === 6){
-      messageEl.classList.add("animate__animated","animate__zoomInDown");
+    if (!result && rowIndex === 6) {
+      messageEl.classList.add("animate__animated", "animate__zoomInDown");
       messageEl.textContent = ` 🧐 Nice effort! The word was: ${todaysWord}`;
     }
-    
   }
 }
 
 function displayLetter(selectedLetter) {
-
-   if (selectedLetter === "DEL") {
-     deleteLetter();
-   }
+  if (selectedLetter === "DEL") {
+    deleteLetter();
+  }
   if (selectedLetter === "ENT" && !result && cursor === 5 && rowIndex < 6) {
     compareLetters();
-      if (checkWord(generatedWord.toLowerCase())) {
-        render();
-      }
+    if (checkWord(generatedWord.toLowerCase())) {
+      render();
+    }
   }
 
   if (!result) {
@@ -166,13 +170,11 @@ function displayLetter(selectedLetter) {
           "animate__fadeIn"
         );
       }
-     
+
       if (generatedWord.length >= 0 && generatedWord.length < letters.length) {
         generatedWord = `${generatedWord}${selectedLetter}`;
         cursor++;
       }
-  
-    
     }
   }
 }
@@ -191,7 +193,7 @@ function reset() {
   this.blur();
 }
 
-function handleKeys(evt){
+function handleKeys(evt) {
   if (rowIndex < 6) {
     displayLetter(evt.key?.toUpperCase() || evt.target.id.toUpperCase());
   }
@@ -207,7 +209,6 @@ function handleKeys(evt){
     deleteLetter();
   }
 }
-
 
 /*----------- Event Listeners ----------*/
 

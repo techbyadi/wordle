@@ -18,9 +18,9 @@ Wordle Adi-Venture is an online word puzzle game where players have six attempts
 * Open the Game: [Wordle Adi-Venture](https://techbyadi.github.io/wordle/)
 * First Guess: Enter a valid five-letter word.
 * Submit Guess: Press "Enter" to receive feedback:
-  * Green: Correct letter and position.
-  * Yellow: Correct letter, wrong position.
-  * Gray: Letter not in the word.
+  * Letters that are in the answer and in the right place turn green.
+  * Letters that are in the answer but in the wrong place turn yellow.
+  * Letters that are not in the answer turn gray.
 * Analyze & Guess Again: Use feedback to make new guesses.
 * Repeat: Continue guessing up to six times using the feedback.
 * Win or Lose: Solve the word within six attempts to win, or see the correct word after six tries.
@@ -28,7 +28,7 @@ Wordle Adi-Venture is an online word puzzle game where players have six attempts
 
 # Motivation
 
-I’m a big fan of quizzes and puzzles and have a passion for neuroscience. I like to keep my prefrontal cortex and hippocampus active and engaged by playing these quizzes and solving puzzles, whether online or offline. One morning during the lockdown, Wordle was launched, and I got hooked. Now, I solve (or attempt to solve) Wordle every morning.
+I’m a big fan of quizzes and puzzles. I enjoy playing different quizzes and solving puzzles, whether online or offline. One lockdown morning, Wordle was launched, and I got hooked to it. Now, I solve (or attempt to solve) Wordle every morning.
 
 
 # Technology Used 
@@ -50,6 +50,7 @@ I’m a big fan of quizzes and puzzles and have a passion for neuroscience. I li
 # Icebox functionalities
 
 *  Add a feature: if guess includes two of one letter, they may both turn yellow, both turn green, or one could be yellow and the other green.
+* Add more words in data file
 * Implement responsive design
 
 
